@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['RAILWAY_DATABASE_HOST'] %>
+  username: <%= ENV['RAILWAY_DATABASE_USERNAME'] %>
+  password: <%= ENV['RAILWAY_DATABASE_PASSWORD'] %>
+  database: <%= ENV['RAILWAY_DATABASE_NAME'] %>
+  port: <%= ENV['DB_PORT'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: railway_test
+
+production:
+  <<: *default
